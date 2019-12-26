@@ -29,3 +29,5 @@ before_install:
 script:
   - echo "$TRAVIS_OS_NAME"
   - echo "Im a script"
+  - hello.sh
+  - hello.bat
