@@ -1,7 +1,7 @@
-env:
-  global:
-    - PY34PATH=/c/Python34:/c/Python34/Scripts:/c/tools/python-x86_32:/c/tools/python-x86_32/Scripts
-    # or refreshenv instead?
+# env:
+#   global:
+#     - PY34PATH=/c/Python34:/c/Python34/Scripts:/c/tools/python-x86_32:/c/tools/python-x86_32/Scripts
+#     # or refreshenv instead?
 
 # chocolatey installs
 #  * choco install python-x86_32 --version=3.4.2 to '/c/tools/python-x86_32'
@@ -32,7 +32,8 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows condition";
         .\\hello.bat;
-        choco install python --version=3.4.4
+        choco install python-x86_32 --version=3.4.2
+        refreshenv
         python -m pip install --upgrade pip;
         pip install pyinstaller;
         pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
