@@ -7,7 +7,6 @@
 #  * choco install python-x86_32 --version=3.4.2 to '/c/tools/python-x86_32'
 #  * choco install python --version=3.4.4        to '/c/Python34'
 # wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
-# cmd.exe //c RefreshEnv.cmd;
 
 language: python
 
@@ -33,6 +32,7 @@ script:
         echo "Windows condition";
         .\\hello.bat;
         choco install python-x86_32 --version=3.4.2;
+        cmd.exe //c RefreshEnv.cmd;
         python -m pip install --upgrade pip;
         python -m pip install pyinstaller;
         python -m pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
