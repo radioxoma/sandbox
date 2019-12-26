@@ -8,6 +8,7 @@ matrix:
       language: shell
 
 before_install:
+  - echo $TRAVIS_OS_NAME;
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows build before_install";
         # wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
@@ -19,12 +20,10 @@ before_install:
         echo "Linux build before_install";
     # elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     #     echo "OS X build";
-    else
-        echo "No match in before_install"
+    else echo "No match in before_install";
     fi
 
 script:
-  - echo $TRAVIS_OS_NAME
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
       # .\\build.cmd;
       echo "Windows script";
@@ -33,7 +32,7 @@ script:
       # dist/sandbox.exe
       # echo "Did something print?";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      echo "Linux script"
+      echo "Linux script";
     #   # docker exec -t xenial /build/setup.sh;
     #   # docker exec -t xenial /build/build.sh;
     # elif  [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
