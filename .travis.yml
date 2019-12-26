@@ -21,8 +21,6 @@ script:
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux condition";
         sh ./hello.sh;
-        sh hello.sh;
-        ./hello.sh;
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X condition";
     else echo "Unknown OS";
