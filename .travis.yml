@@ -17,16 +17,16 @@ script:
   - echo "Im a script running on $TRAVIS_OS_NAME"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows condition";
-        .\\sandbox\\hello.bat;
+        .\\hello.bat;
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux condition";
-        sh ./sandbox/hello.sh;
-        sh sandbox/hello.sh;
-        ./sandbox/hello.sh;
+        sh ./hello.sh;
+        sh hello.sh;
+        ./hello.sh;
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X condition";
     else echo "Unknown OS";
     fi
   - pwd
-  - ls
+  - ls -la
   - echo "End"
