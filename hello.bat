@@ -1,1 +1,1 @@
-echo "Im hello bat file"
+echo Hello world bat file
