@@ -8,8 +8,8 @@ jobs:
   allow_failures:
     - env: ALLOW_FAILURES=true
   include:
-    - os: linux
-      dist: bionic
+    # - os: linux
+    #   dist: bionic
     - os: windows
       language: shell
       env: PATH=$PY34PATH:$PATH
@@ -27,7 +27,7 @@ script:
         choco install python --version=3.4.4;
         python -m pip install --upgrade pip;
         pip install pyinstaller;
-        pyinstaller --onefile --noconsole sandbox\__main__.py --name sandbox;
+        pyinstaller --onefile --noconsole sandbox\\__main__.py --name sandbox;
         sleep 1;
         dist/sandbox.exe;
         echo "End of windows condition";
