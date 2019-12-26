@@ -10,7 +10,7 @@ jobs:
       language: shell
 
 before_install:
-  #- echo "$TRAVIS_OS_NAME"
+  - echo "$TRAVIS_OS_NAME before_install"
   # - choco install python
   #- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
   #      echo "Windows build before_install";
@@ -27,7 +27,9 @@ before_install:
   #  fi
 
 script:
-  - echo "$TRAVIS_OS_NAME"
+  - echo "$TRAVIS_OS_NAME in script"
   - echo "Im a script"
+  - ./hello.sh
+  - .\\hello.bat
   - hello.sh
   - hello.bat
