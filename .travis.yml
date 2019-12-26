@@ -1,10 +1,11 @@
-language: shell
+language: python
 
 matrix:
   include:
     - os: linux
-        dist: bionic
+      dist: bionic
     - os: windows
+      language: shell
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
