@@ -14,11 +14,12 @@ before_install:
   - echo "Im a before_install"
 
 script:
-  - echo "Im a script runnion on $TRAVIS_OS_NAME"
+  - echo "Im a script running on $TRAVIS_OS_NAME"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows condition";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux condition";
+        sh ./hello.sh;
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X condition";
     else echo "Unknown OS";
