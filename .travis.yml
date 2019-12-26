@@ -15,18 +15,15 @@ before_install:
 
 script:
   - echo "Im a script running on $TRAVIS_OS_NAME"
+  - pwd
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows condition";
         .\\hello.bat;
-        hello.bat;
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux condition";
-        sh ./hello.sh;
         ./hello.sh;
-        hello.sh;
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X condition";
     else echo "Unknown OS";
     fi
-  - pwd
   - echo "End"
