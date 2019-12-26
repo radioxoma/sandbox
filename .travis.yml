@@ -17,8 +17,8 @@ jobs:
   allow_failures:
     - env: ALLOW_FAILURES=true
   include:
-    # - os: linux
-    #   dist: bionic
+    - os: linux
+      dist: bionic
     - os: windows
       language: shell
       env: PATH=$PY34PATH:$PATH
