@@ -20,3 +20,21 @@ before_install:
     # elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     #     echo "OS X build";
     fi
+
+script:
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
+      # .\\build.cmd;
+      echo "Windows script";
+      # pyinstaller --onefile --noconsole sandbox\__main__.py --name sandbox
+      # sleep 1  # Allow pyinstaller to finish writing to stdout
+      # dist/sandbox.exe
+      # echo "Did something print?";
+    elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      echo "Linux script"
+    #   # docker exec -t xenial /build/setup.sh;
+    #   # docker exec -t xenial /build/build.sh;
+    # elif  [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    #   git submodule update --init --recursive;
+    #   ./setup.sh;
+    #   ./build.sh;
+    fi
