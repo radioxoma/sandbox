@@ -18,16 +18,19 @@ before_install:
   # No $TRAVIS_OS_NAME here
   - echo "Running a before_install"
 
+# No comments in '-' section allowed
+# wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
+# choco install python --version=3.4.4
 script:
   - echo "Running script on $TRAVIS_OS_NAME platform"
   - pwd
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows condition";
         .\\hello.bat;
-        choco install python --version=3.4.4;
+        choco install python-x86_32 --version=3.4.2;;
         python -m pip install --upgrade pip;
         pip install pyinstaller;
-        pyinstaller --onefile --noconsole sandbox\\__main__.py --name sandbox;
+        pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
         dist/sandbox.exe;
         echo "End of windows condition";
@@ -41,8 +44,3 @@ script:
     else echo "Unknown OS";
     fi
   - echo "End"
-
-# No comments in '-' section allowed
-
-# wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
-# choco install python-x86_32 --version=3.4.2;
