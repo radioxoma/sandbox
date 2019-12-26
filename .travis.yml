@@ -24,4 +24,6 @@ script:
         echo "OS X condition";
     else echo "Unknown OS";
     fi
+  - pwd
+  - ls
   - echo "End"
