@@ -14,21 +14,9 @@ before_install:
   - echo "Im a before_install"
 
 script:
-  - echo "Im a script"
-  - echo "$TRAVIS_OS_NAME in script"
+  - echo "Im a script runnion on $TRAVIS_OS_NAME"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows condition";
-        # wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
-        # choco install python-x86_32 --version=3.4.2;
-        # choco install python --version=3.4.4;
-        # python -m pip install --upgrade pip;
-        # pip install pyinstaller;
-
-        # .\\build.cmd;
-        # echo "Windows script";
-        # pyinstaller --onefile --noconsole sandbox\__main__.py --name sandbox
-        # sleep 1  # Allow pyinstaller to finish writing to stdout
-        # dist/sandbox.exe
         echo "Did something print?";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
        echo "Linux condition";
