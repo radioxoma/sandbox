@@ -11,10 +11,10 @@ jobs:
 
 before_install:
   # No $TRAVIS_OS_NAME here
-  - echo "Im a before_install"
+  - echo "Running a before_install"
 
 script:
-  - echo "Im a script running on $TRAVIS_OS_NAME"
+  - echo "Running script on $TRAVIS_OS_NAME platform"
   - pwd
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows condition";
