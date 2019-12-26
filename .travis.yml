@@ -1,11 +1,10 @@
-language: python
-
 matrix:
   allow_failures:
     - env: ALLOW_FAILURES=true
   include:
     - os: linux
       dist: bionic
+      language: python
     - os: windows
       language: shell
 
