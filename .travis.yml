@@ -11,19 +11,20 @@ matrix:
 before_install:
   - echo "$TRAVIS_OS_NAME"
   # - choco install python
-  # - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
-  #       echo "Windows build before_install";
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
+        echo "Windows build before_install";
   #       # wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
   #       # choco install python-x86_32 --version=3.4.2
   #   #     choco install python --version=3.4.4;
   #   #     python -m pip install --upgrade pip;
   #   #     pip install pyinstaller;
-  #   elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-  #       echo "Linux build before_install";
+    elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+        echo "Linux build before_install";
   #   # elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
   #   #     echo "OS X build";
-  #   else echo "No match in before_install";
-  #   fi
+    else echo "No match in before_install";
+    fi
 
 script:
+  - echo "$TRAVIS_OS_NAME"
   - echo "Im a script"
