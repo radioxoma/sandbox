@@ -10,18 +10,31 @@ jobs:
       language: shell
 
 before_install:
-  - echo "Im a before_install"
   # No $TRAVIS_OS_NAME here
-  # - choco install python
+  - echo "Im a before_install"
 
 script:
   - echo "Im a script"
   - echo "$TRAVIS_OS_NAME in script"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
-       echo "Windows condition";
+        echo "Windows condition";
+        # wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
+        # choco install python-x86_32 --version=3.4.2;
+        # choco install python --version=3.4.4;
+        # python -m pip install --upgrade pip;
+        # pip install pyinstaller;
+
+        # .\\build.cmd;
+        # echo "Windows script";
+        # pyinstaller --onefile --noconsole sandbox\__main__.py --name sandbox
+        # sleep 1  # Allow pyinstaller to finish writing to stdout
+        # dist/sandbox.exe
+        echo "Did something print?";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
        echo "Linux condition";
+       sh ./hello.sh;
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X condition";
-   else echo "No match in before_install";
-   fi
+    else echo "Unknown OS";
+    fi
+  - echo "End"
