@@ -1,9 +1,8 @@
-language: python
-
 jobs:
   include:
     - os: linux
       dist: bionic
+      language: python
     - os: windows
       language: shell
 
