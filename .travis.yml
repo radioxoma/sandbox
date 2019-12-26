@@ -17,7 +17,7 @@ script:
   - echo "Im a script running on $TRAVIS_OS_NAME"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows condition";
-        .\\sandbox\hello.bat
+        .\\sandbox\hello.bat;
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux condition";
         sh ./sandbox/hello.sh;
