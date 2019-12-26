@@ -1,12 +1,15 @@
-# env:
-#   global:
-#     - PY34PATH=/c/Python34:/c/Python34/Scripts:/c/tools/python-x86_32:/c/tools/python-x86_32/Scripts
-#     # or refreshenv instead?
+env:
+  global:
+    - PY34PATH=/c/Python34:/c/Python34/Scripts:/c/tools/python-x86_32:/c/tools/python-x86_32/Scripts
+
+# wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
 
 # chocolatey installs
 #  * choco install python-x86_32 --version=3.4.2 to '/c/tools/python-x86_32'
 #  * choco install python --version=3.4.4        to '/c/Python34'
-# wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
+
+# mingw already in PATH, it will brake python/pip search
+# cmd.exe //c RefreshEnv.cmd;
 
 language: python
 
@@ -32,10 +35,9 @@ script:
         echo "Windows condition";
         .\\hello.bat;
         choco install python-x86_32 --version=3.4.2;
-        cmd.exe //c RefreshEnv.cmd;
         python -m pip install --upgrade pip;
-        python -m pip install pyinstaller;
-        python -m pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
+        pip install pyinstaller;
+        pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
         dist/sandbox.exe;
         echo "End of windows condition";
