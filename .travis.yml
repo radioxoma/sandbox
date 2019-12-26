@@ -1,4 +1,4 @@
-jobs:
+matrix:
   include:
     - os: linux
       dist: bionic
