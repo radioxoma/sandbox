@@ -6,6 +6,7 @@
 # chocolatey installs
 #  * choco install python-x86_32 --version=3.4.2 to '/c/tools/python-x86_32'
 #  * choco install python --version=3.4.4        to '/c/Python34'
+# wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
 
 language: python
 
@@ -24,8 +25,6 @@ before_install:
   - echo "Running a before_install"
 
 # No comments in '-' section allowed
-# wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
-# 
 script:
   - echo "Running script on $TRAVIS_OS_NAME platform"
   - pwd
@@ -35,6 +34,7 @@ script:
         choco install python-x86_32 --version=3.4.2;
         dir c:\\;
         cmd.exe //c RefreshEnv.cmd;
+        echo %PATH%;
         python -m pip install --upgrade pip;
         pip install pyinstaller;
         pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
