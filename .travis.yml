@@ -1,8 +1,11 @@
-language: python
-
 env:
   global:
-    - PY34PATH=/c/Python34:/c/Python34/Scripts
+    - PY34PATH=/c/Python34:/c/Python34/Scripts:/c/tools/python-x86_32:/c/tools/python-x86_32/Scripts
+# chocolatey installs
+#  * choco install python-x86_32 --version=3.4.2 to '/c/tools/python-x86_32'
+#  * choco install python --version=3.4.4        to '/c/Python34'
+
+language: python
 
 jobs:
   allow_failures:
@@ -20,7 +23,7 @@ before_install:
 
 # No comments in '-' section allowed
 # wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
-# choco install python --version=3.4.4
+# 
 script:
   - echo "Running script on $TRAVIS_OS_NAME platform"
   - pwd
@@ -43,4 +46,3 @@ script:
         echo "OS X condition";
     else echo "Unknown OS";
     fi
-  - echo "End"
