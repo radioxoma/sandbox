@@ -1,5 +1,9 @@
 language: python
 
+env:
+  global:
+    - PY34PATH=/c/Python34:/c/Python34/Scripts
+
 jobs:
   allow_failures:
     - env: ALLOW_FAILURES=true
@@ -8,6 +12,7 @@ jobs:
       dist: bionic
     - os: windows
       language: shell
+      env: PATH=$PY34PATH:$PATH
 
 before_install:
   # No $TRAVIS_OS_NAME here
@@ -38,7 +43,6 @@ script:
   - echo "End"
 
 # No comments in '-' section allowed
-
 
 # wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
 # choco install python-x86_32 --version=3.4.2;
