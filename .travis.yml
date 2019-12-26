@@ -19,6 +19,12 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows condition";
         .\\hello.bat;
+        choco install python --version=3.4.4;
+        python -m pip install --upgrade pip;
+        pip install pyinstaller;
+        pyinstaller --onefile --noconsole sandbox\__main__.py --name sandbox;
+        sleep 1;
+        dist/sandbox.exe;
         echo "End of windows condition";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux condition";
@@ -30,3 +36,9 @@ script:
     else echo "Unknown OS";
     fi
   - echo "End"
+
+# No comments in '-' section allowed
+
+
+# wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
+# choco install python-x86_32 --version=3.4.2;
