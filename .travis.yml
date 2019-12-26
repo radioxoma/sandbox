@@ -17,10 +17,8 @@ script:
   - echo "Im a script runnion on $TRAVIS_OS_NAME"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows condition";
-        echo "Did something print?";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-       echo "Linux condition";
-       sh ./hello.sh;
+        echo "Linux condition";
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X condition";
     else echo "Unknown OS";
