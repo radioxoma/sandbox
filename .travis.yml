@@ -69,7 +69,7 @@ script:
         pipenv run pyinstaller --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
         hdiutil create dist/sandbox.dmg -srcfolder dist/sandbox.app -ov;
-        rm -rf dist/sandbox.app/
+        rm -rfv dist/sandbox.app/
         ls dist;
         export RELEASE_FILE="dist/sandbox.dmg";
         echo "End of OS X script";
@@ -91,11 +91,11 @@ deploy:
   file: "dist/sandbox*"
   skip_cleanup: true
   draft: true
-  overwrite: true  # Merge separate releases into one
-  # name: "openScale dev build"
+  overwrite: true
   body: "Auto dev build by Travis CI"
   on:
     repo: radioxoma/sandbox
+    condition:  "\"$TRAVIS_OS_NAME\" != \"linux\""
 
 # env(RELEASE_FILE) IS present
 #  file: /Users/travis/file.dmg
