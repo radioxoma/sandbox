@@ -91,6 +91,8 @@ deploy:
   file: "dist/sandbox*"
   skip_cleanup: true
   draft: true
+  # name: "openScale dev build"
+  body: "Auto dev build by Travis CI"
   on:
     repo: radioxoma/sandbox
 
