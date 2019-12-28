@@ -49,16 +49,21 @@ script:
         sleep 1;
         dist/sandbox.exe;
         export RELEASE_FILE="dist/sandbox.exe";
-        echo "End of windows condition";
+        echo "End of windows script";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux script";
         ./build.sh;
         python -m sandbox;
-        echo "End of linux condition";
+        echo "End of linux script";
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X script";
-        ./build.sh;
         python3 --version;
+        python3 -c "import tkinter; from tkinter import ttk; print(tkinter.TkVersion)"
+        ./build.sh;
+        pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
+        sleep 1;
+        ls dist
+        echo "End of OS X script";
     fi
 
 # before_deploy:
