@@ -23,10 +23,11 @@ jobs:
       language: shell
       env: PATH=$PY34PATH:$PATH
     - os: osx
+      name: Mac OS X
       language: shell
 #       python: "3.4"
 
-# No $TRAVIS_OS_NAME here
+# $TRAVIS_OS_NAME don't working here
 before_install:
   - echo "Running before_install"
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
@@ -39,7 +40,7 @@ script:
   - echo "Running script on $TRAVIS_OS_NAME platform"
   - pwd
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
-        echo "Windows condition";
+        echo "Windows script";
         .\\build.bat;
         choco install python-x86_32 --version=3.4.2;
         python -m pip install --upgrade pip;
@@ -49,12 +50,12 @@ script:
         dist/sandbox.exe;
         echo "End of windows condition";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        echo "Linux condition";
+        echo "Linux script";
         ./build.sh;
         python -m sandbox;
         echo "End of linux condition";
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        echo "OS X condition";
+        echo "OS X script";
         ./build.sh;
         python3 --version;
     else echo "Unknown OS";
@@ -72,6 +73,7 @@ script:
 #     file: dist/sandbox.exe
 #     skip_cleanup: true
 #     draft: true
+#     overwrite: true
 #     on:
 #       tags: true
 #       condition:  "\"$TRAVIS_OS_NAME\" == \"osx\""
