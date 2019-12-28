@@ -26,11 +26,13 @@ jobs:
       language: shell
 #       python: "3.4"
 
-# https://github.com/chrischute/label-img/blob/master/.travis.yml
-
 before_install:
   # No $TRAVIS_OS_NAME here
   - echo "Running a before_install"
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update          ; fi
+
+# install:
+#   - if [ "$TRAVIS_OS_NAME" == "osx"   ] ; then   mac-build/install.sh ; fi
 
 # No comments in '-' section allowed
 script:
@@ -56,3 +58,20 @@ script:
         python3 --version;
     else echo "Unknown OS";
     fi
+
+# before_deploy:
+#   - if [ "$TRAVIS_OS_NAME" == "osx"   ] ; then cp mac-build/dist/file.dmg /Users/travis/file.dmg ; fi
+
+# deploy:
+#   # see https://docs.travis-ci.com/user/deployment/releases/
+#   - provider: releases
+#     api_key:
+#       secure: 
+#     file: /Users/travis/file.dmg
+#     file: dist/sandbox.exe
+#     skip_cleanup: true
+#     draft: true
+#     on:
+#       tags: true
+#       condition:  "\"$TRAVIS_OS_NAME\" == \"osx\""
+#       repo: radioxoma/sandbox
