@@ -92,7 +92,7 @@ deploy:
   draft: true
   on:
     repo: radioxoma/sandbox
-    condition: $TRAVIS_OS_NAME == (windows|osx)
+    condition: "$TRAVIS_OS_NAME == (windows|osx)"
 
 # env(RELEASE_FILE) IS present
 #  file: /Users/travis/file.dmg
