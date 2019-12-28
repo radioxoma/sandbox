@@ -24,7 +24,7 @@ jobs:
       env: PATH=$PY34PATH:$PATH
     - os: osx
       language: shell
-      python: "3.4"
+#       python: "3.4"
 
 # https://github.com/chrischute/label-img/blob/master/.travis.yml
 
