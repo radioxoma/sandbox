@@ -18,8 +18,10 @@ jobs:
     - env: ALLOW_FAILURES=true
   include:
     - os: linux
+      name: Ubuntu
       dist: bionic
     - os: windows
+      name: Windows
       language: shell
       env: PATH=$PY34PATH:$PATH
     - os: osx
@@ -59,7 +61,14 @@ script:
         echo "OS X script";
         python3 --version;
         python3 -c "import tkinter; from tkinter import ttk; print(tkinter.TkVersion)"
+        which python3;
         ./build.sh;
+        brew upgrade python;
+        pip3 install pipenv;
+        pipenv --three;
+        pipenv run python -c "import tkinter; from tkinter import ttk; print(tkinter.TkVersion)"
+        pipenv run pip install pyinstaller
+        pipenv run python pyinstaller
         pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
         ls dist
