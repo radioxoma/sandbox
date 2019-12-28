@@ -50,7 +50,6 @@ script:
         choco install python-x86_32 --version=3.4.2;
         python -m pip install --upgrade pip;
         pip install pyinstaller;
-        .\\build.bat;
         pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
         dist/sandbox.exe;
@@ -75,6 +74,7 @@ script:
         echo "End of OS X script";
     fi
 
+# .\\build.bat;
 # brew upgrade python ?
 # Mac OS X 10.13.6 uses Python 2.7.17 as default interpreter /usr/local/bin/python
 # Brew installs python3 by default to /usr/local/bin/python3
@@ -92,7 +92,7 @@ deploy:
   draft: true
   on:
     repo: radioxoma/sandbox
-    condition: env(RELEASE_FILE) IS present 
+    condition: env(RELEASE_FILE) IS present
 
 #  file: /Users/travis/file.dmg
 #  overwrite: true
