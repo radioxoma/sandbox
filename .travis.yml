@@ -26,9 +26,9 @@ jobs:
       language: shell
 #       python: "3.4"
 
+# No $TRAVIS_OS_NAME here
 before_install:
-  # No $TRAVIS_OS_NAME here
-  - echo "Running a before_install"
+  - echo "Running before_install"
   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
 
 # install:
@@ -40,7 +40,7 @@ script:
   - pwd
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows condition";
-        .\\hello.bat;
+        .\\build.bat;
         choco install python-x86_32 --version=3.4.2;
         python -m pip install --upgrade pip;
         pip install pyinstaller;
@@ -50,11 +50,12 @@ script:
         echo "End of windows condition";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux condition";
-        ./hello.sh;
+        ./build.sh;
         python -m sandbox;
         echo "End of linux condition";
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X condition";
+        ./build.sh;
         python3 --version;
     else echo "Unknown OS";
     fi
