@@ -29,7 +29,7 @@ jobs:
 before_install:
   # No $TRAVIS_OS_NAME here
   - echo "Running a before_install"
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update          ; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
 
 # install:
 #   - if [ "$TRAVIS_OS_NAME" == "osx"   ] ; then   mac-build/install.sh ; fi
@@ -75,3 +75,7 @@ script:
 #       tags: true
 #       condition:  "\"$TRAVIS_OS_NAME\" == \"osx\""
 #       repo: radioxoma/sandbox
+
+# after_deploy:
+#   - ./after_deploy_1.sh
+#   - ./after_deploy_2.sh
