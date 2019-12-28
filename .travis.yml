@@ -59,17 +59,17 @@ script:
         echo "End of linux script";
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X script";
-        python3 --version;
-        python3 -c "import tkinter; from tkinter import ttk; print(tkinter.TkVersion)"
-        which python3;
+        python --version;
+        python -c "import tkinter; from tkinter import ttk; print(tkinter.TkVersion)";
+        which python;
         ./build.sh;
+        echo "Installing python3 with brew";
         brew upgrade python;
         pip3 install pipenv;
         pipenv --three;
-        pipenv run python -c "import tkinter; from tkinter import ttk; print(tkinter.TkVersion)"
-        pipenv run pip install pyinstaller
-        pipenv run python pyinstaller
-        pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
+        pipenv run python -c "import tkinter; from tkinter import ttk; print(tkinter.TkVersion)";
+        pipenv run pip install pyinstaller;
+        pipenv run python pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
         ls dist
         echo "End of OS X script";
