@@ -30,17 +30,21 @@ jobs:
       # python: "3.4"
 
 # $TRAVIS_OS_NAME don't working here
+# No comments in '-' section allowed
+
 # before_install:
 #   - echo "Running before_install on $TRAVIS_OS_NAME platform"
 #   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
 
-# install:
+install:
+  - pwd
+  - echo "Running install script"
+  - echo $TRAVIS_OS_NAME
+  - echo "Exiting install script"
 #   - if [ "$TRAVIS_OS_NAME" == "osx"   ] ; then   mac-build/install.sh ; fi
 
-# No comments in '-' section allowed
 script:
   - echo "Running script on $TRAVIS_OS_NAME platform"
-  - pwd
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows script start";
         choco install python-x86_32 --version=3.4.2;
@@ -67,6 +71,7 @@ script:
         pipenv run pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
         ls dist;
+        export RELEASE_FILE="dist/sandbox.app";
         echo "End of OS X script";
     fi
 
@@ -86,7 +91,7 @@ deploy:
   draft: true
   on:
     repo: radioxoma/sandbox
-    condition:  "\"$TRAVIS_OS_NAME\" == \"windows\""
+    condition:  "\"$TRAVIS_OS_NAME\" == \"windows\" or \"$TRAVIS_OS_NAME\" == \"osx\""
 
 #  file_glob: true
 #  file: /Users/travis/file.dmg
