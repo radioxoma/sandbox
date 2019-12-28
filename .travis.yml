@@ -53,6 +53,6 @@ script:
         echo "End of linux condition";
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X condition";
-        python --version;
+        python3 --version;
     else echo "Unknown OS";
     fi
