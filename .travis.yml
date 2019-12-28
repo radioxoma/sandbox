@@ -27,7 +27,7 @@ jobs:
     - os: osx
       name: Mac OS X
       language: shell
-#       python: "3.4"
+      # python: "3.4"
 
 # $TRAVIS_OS_NAME don't working here
 # before_install:
@@ -64,7 +64,7 @@ script:
         which python;
         ./build.sh;
         echo "Installing python 3 with brew";
-        brew upgrade python;
+        brew install python;
         pip3 install pipenv;
         pipenv --three;
         pipenv which python;
@@ -72,7 +72,7 @@ script:
         pipenv run pip install pyinstaller;
         pipenv run python pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
-        ls dist
+        ls dist;
         echo "End of OS X script";
     fi
 
