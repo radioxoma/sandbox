@@ -59,23 +59,18 @@ script:
         echo "End of linux script";
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X script start";
-        python --version;
-        python -c "import tkinter; from tkinter import ttk; print(tkinter.TkVersion)";
-        which python;
         ./build.sh;
-        echo "Installing python 3 with brew";
-        brew install python;
         pip3 install pipenv;
         pipenv --three;
-        pipenv which python;
         pipenv run python -c "import tkinter; from tkinter import ttk; print(tkinter.TkVersion)";
         pipenv run pip install pyinstaller;
-        pipenv run python pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
+        pipenv run pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
         ls dist;
         echo "End of OS X script";
     fi
 
+# brew upgrade python ?
 # Mac OS X 10.13.6 uses Python 2.7.17 as default interpreter /usr/local/bin/python
 # Brew installs python3 by default to /usr/local/bin/python3
 
