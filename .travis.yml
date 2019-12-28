@@ -66,9 +66,8 @@ script:
         ./build.sh;
         pip3 install pipenv;
         pipenv --three;
-        pipenv run python -c "import tkinter; from tkinter import ttk; print(tkinter.TkVersion)";
         pipenv run pip install pyinstaller;
-        pipenv run pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
+        pipenv run pyinstaller --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
         hdiutil create dist/sandbox.dmg -srcfolder dist/sandbox.app -ov;
         ls dist;
