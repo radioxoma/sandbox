@@ -91,6 +91,7 @@ deploy:
   file: "dist/sandbox*"
   skip_cleanup: true
   draft: true
+  overwrite: true  # Merge separate releases into one
   # name: "openScale dev build"
   body: "Auto dev build by Travis CI"
   on:
@@ -98,7 +99,6 @@ deploy:
 
 # env(RELEASE_FILE) IS present
 #  file: /Users/travis/file.dmg
-#  overwrite: true
 #  on:
 #    tags: true
 
