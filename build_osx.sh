@@ -1,4 +1,4 @@
-echo "Hello world sh file"
+echo Mac OS X build script invoked
 pipenv run pyinstaller --noconsole sandbox/__main__.py --name sandbox
 sleep 1
 hdiutil create dist/sandbox.dmg -srcfolder dist/sandbox.app -ov

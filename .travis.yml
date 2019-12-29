@@ -2,14 +2,18 @@ env:
   global:
     - PY34PATH=/c/Python34:/c/Python34/Scripts:/c/tools/python-x86_32:/c/tools/python-x86_32/Scripts
 
+# Windows
 # wget https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi
-
-# chocolatey installs
+# chocolatey installs:
 #  * choco install python-x86_32 --version=3.4.2 to '/c/tools/python-x86_32'
 #  * choco install python --version=3.4.4        to '/c/Python34'
-
 # mingw already in PATH, it will brake python/pip search
 # cmd.exe //c RefreshEnv.cmd;
+
+# Mac OS X
+# brew upgrade python ?
+# Mac OS X 10.13.6 uses Python 2.7.17 as default interpreter /usr/local/bin/python
+# Brew installs python3 by default to /usr/local/bin/python3
 
 language: python
 
@@ -24,7 +28,7 @@ jobs:
       name: Windows
       language: shell
       env: PATH=$PY34PATH:$PATH
-      before_install:
+      install:
         - echo "Running before_install on $os platform"
         - choco install python-x86_32 --version=3.4.2
         - python -m pip install --upgrade pip
@@ -32,22 +36,14 @@ jobs:
     - os: osx
       name: Mac OS X
       language: shell
-      before_install:
+      install:
         - echo "Running before_install on $os platform"
         - brew install tree;
         - pip3 install pipenv;
         - pipenv --three;
         - pipenv run pip install pyinstaller;
 
-# install:
-#   - pwd
-#   - echo "Running install script"
-#   - echo "Running install on $TRAVIS_OS_NAME platform"
-#   - echo "Exiting install script"
-#   - if [ "$TRAVIS_OS_NAME" == "osx"   ] ; then   mac-build/install.sh ; fi
-
-# before_script:
-
+# These scripts should be able to build project on Travis and locally
 script:
   - echo "Running script on $TRAVIS_OS_NAME platform"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
@@ -65,10 +61,6 @@ script:
         export RELEASE_FILE="dist/sandbox.dmg";
         echo "End of OS X script";
     fi
-
-# brew upgrade python ?
-# Mac OS X 10.13.6 uses Python 2.7.17 as default interpreter /usr/local/bin/python
-# Brew installs python3 by default to /usr/local/bin/python3
 
 # before_deploy:
 #   - if [ "$TRAVIS_OS_NAME" == "osx"   ] ; then cp mac-build/dist/file.dmg /Users/travis/file.dmg ; fi
