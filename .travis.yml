@@ -61,7 +61,9 @@ script:
     fi
 
 before_deploy:
-  - echo "Release file name ${RELEASE_FILE}"
+  - echo "Release file name $RELEASE_FILE"
+  - echo "From Windows script $WINDOWS_FILE"
+  - echo "From OS X script $OSX_FILE"
 #   - if [ "$TRAVIS_OS_NAME" == "osx"   ] ; then cp mac-build/dist/file.dmg /Users/travis/file.dmg ; fi
 
 deploy:
