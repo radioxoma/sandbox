@@ -46,7 +46,7 @@ script:
   - echo "Running script on $TRAVIS_OS_NAME platform"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows script start";
-        .\\build.bat;
+        . .\\build.bat;
         export RELEASE_FILE="dist/sandbox.exe";
         echo "End of windows script";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
