@@ -70,6 +70,7 @@ script:
         sleep 1;
         hdiutil create dist/sandbox.dmg -srcfolder dist/sandbox.app -ov;
         rm -rfv dist/sandbox.app/
+        echo "dist content:"
         ls dist;
         export RELEASE_FILE="dist/sandbox.dmg";
         echo "End of OS X script";
@@ -95,7 +96,7 @@ deploy:
   body: "Auto dev build by Travis CI"
   on:
     repo: radioxoma/sandbox
-    condition:  "\"$TRAVIS_OS_NAME\" != \"linux\""
+    condition: "\"$TRAVIS_OS_NAME\" != \"linux\""
 
 # env(RELEASE_FILE) IS present
 #  file: /Users/travis/file.dmg
