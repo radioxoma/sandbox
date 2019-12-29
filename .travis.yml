@@ -63,15 +63,18 @@ script:
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X script start";
         ./build.sh;
+        brew install tree;
         pip3 install pipenv;
         pipenv --three;
         pipenv run pip install pyinstaller;
         pipenv run pyinstaller --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
         hdiutil create dist/sandbox.dmg -srcfolder dist/sandbox.app -ov;
-        rm -rfv dist/sandbox.app/
+        echo Remove sandbox.app;
+        rm -rfv dist/sandbox.app;
         echo "dist content:"
         ls dist;
+        tree;
         export RELEASE_FILE="dist/sandbox.dmg";
         echo "End of OS X script";
     fi
@@ -89,10 +92,10 @@ deploy:
   api_key:
     secure: twyg+DsFZN2zAlq0S4jEcl8AAFpfbGj4sFswHgNLaCm0kshpL42oxL531Ubz/QuqtCPsklvtchkAumGPzE9Ec2mANQGOtDHAgeC9Uhjls2cwCtrlQ8O4saOpoXTYKjw/RMwy4HaA3YRppvFaHjSDdWx3zeWt6w1KtfLw1ZlvQnIPt/NusJr6lkKd57+Ct2MpgZiRxLo+r2x8Y/VutlgAmPozc7KlILxcaUnpyNqKAsjmNzzLe5WAKEV8rzCpvhPc9DiUdql3zGi4/V6FMmSeKmJGTmls4fdGUYobedljgXpAbMtIeqquxkxbCOIhY/bEUoSipkjwVyVFYgmOPay9VzJDo/5DicxIjvn55yQJ9rSc3gvdlbirHMXNANjLNU167h2jl1cwvaq3hSF8U3zfJ4pB5PKv68V4j0RSdYg64shWimpqJUcFJAzPQav5OiO9nwt+RF+TDG5DoLKf6GvjJKCr6Qedf3oQ7Vx499ByKUKA6Qqn8emcbXZ3NOw7DJAAkY/qcWs07zPsdyrO4raghis3b1gw36sB7ia8A404SWdagz+/yGvhG+J38kLwSEWbUqGFHaZKdJEniqnkhblvcpuDV5hYbUJZsawfvEmOPKqBYT+Cd13cw5xDFnBSUi5d7MmG3YubgpZrtMlf3N7zsPpwZM4MOoZvgTy9sOoQqzU=
   file_glob: true
-  file: "dist/sandbox*"
+  file: "dist/*"
   skip_cleanup: true
   draft: true
-  body: "Auto dev build by Travis CI"
+  name: "Auto dev build by Travis CI"
   on:
     repo: radioxoma/sandbox
     condition: "\"$TRAVIS_OS_NAME\" != \"linux\""
