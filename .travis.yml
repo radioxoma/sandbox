@@ -24,17 +24,15 @@ jobs:
       name: Windows
       language: shell
       env: PATH=$PY34PATH:$PATH
+      before_install:
+        - echo "Running before_install on $TRAVIS_OS_NAME platform"
+        - choco install python-x86_32 --version=3.4.2
+        - python -m pip install --upgrade pip
+        - pip install pyinstaller
     - os: osx
       name: Mac OS X
       language: shell
       # python: "3.4"
-
-# $TRAVIS_OS_NAME don't working here
-# No comments in '-' section allowed
-
-# before_install:
-#   - echo "Running before_install on $TRAVIS_OS_NAME platform"
-#   - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update; fi
 
 install:
   - pwd
@@ -43,13 +41,12 @@ install:
   - echo "Exiting install script"
 #   - if [ "$TRAVIS_OS_NAME" == "osx"   ] ; then   mac-build/install.sh ; fi
 
+# before_script:
+
 script:
   - echo "Running script on $TRAVIS_OS_NAME platform"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows script start";
-        choco install python-x86_32 --version=3.4.2;
-        python -m pip install --upgrade pip;
-        pip install pyinstaller;
         pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
         dist/sandbox.exe;
