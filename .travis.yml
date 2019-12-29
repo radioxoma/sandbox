@@ -62,7 +62,8 @@ script:
         echo "End of OS X script";
     fi
 
-# before_deploy:
+before_deploy:
+  - echo "Release file name $RELEASE_FILE"
 #   - if [ "$TRAVIS_OS_NAME" == "osx"   ] ; then cp mac-build/dist/file.dmg /Users/travis/file.dmg ; fi
 
 deploy:
@@ -72,7 +73,6 @@ deploy:
   file_glob: true
   file: "dist/sandbox.*"
   # file: "${RELEASE_FILE}"
-  # cleanup: false
   skip_cleanup: true
   draft: true
 #  overwrite: true
@@ -81,13 +81,7 @@ deploy:
   body: "Body text"
   on:
     repo: radioxoma/sandbox
+#     tags: true
     condition: "\"$TRAVIS_OS_NAME\" != \"linux\""
 
 # env(RELEASE_FILE) IS present
-#  file: /Users/travis/file.dmg
-#  on:
-#    tags: true
-
-# after_deploy:
-#   - ./after_deploy_1.sh
-#   - ./after_deploy_2.sh
