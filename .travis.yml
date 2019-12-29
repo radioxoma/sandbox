@@ -55,7 +55,7 @@ script:
         echo "End of linux script";
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X script start";
-        ./build_osx.sh;
+        . ./build_osx.sh;
         export RELEASE_FILE="dist/sandbox.dmg";
         echo "End of OS X script";
     fi
