@@ -96,8 +96,8 @@ deploy:
   file_glob: true
   # file: "dist/sandbox.*"
   file: "${RELEASE_FILE}"
-  skip_cleanup: true
   draft: true
+  overwrite: true
   tag_name: "continuous"
   # name: "Auto dev build by Travis CI"
   body: "Body text"
@@ -105,7 +105,6 @@ deploy:
     repo: radioxoma/sandbox
     condition: "\"$TRAVIS_OS_NAME\" != \"linux\""
 
-# overwrite: true
 # env(RELEASE_FILE) IS present
 #  file: /Users/travis/file.dmg
 #  on:
