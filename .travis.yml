@@ -52,34 +52,20 @@ script:
   - echo "Running script on $TRAVIS_OS_NAME platform"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows script start";
-        pyinstaller --onefile --noconsole sandbox/__main__.py --name sandbox;
-        sleep 1;
-        dist/sandbox.exe;
+        .\\build.bat;
         export RELEASE_FILE="dist/sandbox.exe";
         echo "End of windows script";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux script start";
-        ./build.sh;
         python -m sandbox;
         echo "End of linux script";
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X script start";
-        ./build.sh;
-        pipenv run pyinstaller --noconsole sandbox/__main__.py --name sandbox;
-        sleep 1;
-        hdiutil create dist/sandbox.dmg -srcfolder dist/sandbox.app -ov;
-        echo Remove sandbox directory;
-        rm -rfv dist/sandbox;
-        echo Remove sandbox.app directory;
-        rm -rfv dist/sandbox.app;
-        echo "dist content:"
-        ls dist;
-        tree;
+        ./build_osx.sh;
         export RELEASE_FILE="dist/sandbox.dmg";
         echo "End of OS X script";
     fi
 
-# .\\build.bat;
 # brew upgrade python ?
 # Mac OS X 10.13.6 uses Python 2.7.17 as default interpreter /usr/local/bin/python
 # Brew installs python3 by default to /usr/local/bin/python3
