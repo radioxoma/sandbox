@@ -96,8 +96,9 @@ deploy:
   file_glob: true
   # file: "dist/sandbox.*"
   file: "${RELEASE_FILE}"
+  cleanup: false
   draft: true
-  overwrite: true
+#  overwrite: true
   tag_name: "continuous"
   # name: "Auto dev build by Travis CI"
   body: "Body text"
