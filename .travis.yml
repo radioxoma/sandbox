@@ -96,7 +96,8 @@ deploy:
   file_glob: true
   # file: "dist/sandbox.*"
   file: "${RELEASE_FILE}"
-  cleanup: false
+  # cleanup: false
+  skip_cleanup: true
   draft: true
 #  overwrite: true
   tag_name: "continuous"
