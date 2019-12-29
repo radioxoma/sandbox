@@ -97,6 +97,7 @@ deploy:
   file: "dist/sandbox.*"
   skip_cleanup: true
   draft: true
+  tag_name: "continuous"
   name: "Auto dev build by Travis CI"
   body: "Body text"
   on:
