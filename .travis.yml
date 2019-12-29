@@ -25,20 +25,25 @@ jobs:
       language: shell
       env: PATH=$PY34PATH:$PATH
       before_install:
-        - echo "Running before_install on $TRAVIS_OS_NAME platform"
+        - echo "Running before_install on $os platform"
         - choco install python-x86_32 --version=3.4.2
         - python -m pip install --upgrade pip
         - pip install pyinstaller
     - os: osx
       name: Mac OS X
       language: shell
-      # python: "3.4"
+      before_install:
+        - echo "Running before_install on $os platform"
+        - brew install tree;
+        - pip3 install pipenv;
+        - pipenv --three;
+        - pipenv run pip install pyinstaller;
 
-install:
-  - pwd
-  - echo "Running install script"
-  - echo "Running install on $TRAVIS_OS_NAME platform"
-  - echo "Exiting install script"
+# install:
+#   - pwd
+#   - echo "Running install script"
+#   - echo "Running install on $TRAVIS_OS_NAME platform"
+#   - echo "Exiting install script"
 #   - if [ "$TRAVIS_OS_NAME" == "osx"   ] ; then   mac-build/install.sh ; fi
 
 # before_script:
@@ -60,10 +65,6 @@ script:
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X script start";
         ./build.sh;
-        brew install tree;
-        pip3 install pipenv;
-        pipenv --three;
-        pipenv run pip install pyinstaller;
         pipenv run pyinstaller --noconsole sandbox/__main__.py --name sandbox;
         sleep 1;
         hdiutil create dist/sandbox.dmg -srcfolder dist/sandbox.app -ov;
