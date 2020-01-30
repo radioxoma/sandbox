@@ -41,11 +41,11 @@ jobs:
     - brew install tree
     - pip3 install pipenv
     - pipenv --three
-    - pipenv run pip install pyinstaller
+    - pipenv install pyinstaller
 
 # These scripts should be able to build project on Travis and locally
 script:
-  - python -m unittest
+  - python -m unittest discover
   - echo "Running script on $TRAVIS_OS_NAME platform"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows script start";
@@ -54,7 +54,6 @@ script:
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X script start";
         ./build_osx.sh;
-        pipenv run python -m unittest;
         echo "End of OS X script";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux script start";
