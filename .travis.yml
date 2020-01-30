@@ -20,7 +20,7 @@ jobs:
     # pip 19.2 drops support for python 3.4 (despite 19.3.1 been working fine)
     # Key '--user' is mandatory outside virtualenv 'language: python'
     - choco install python-x86_32 --version=3.4.3.20150501
-    - pip install --user --upgrade pip==19.1.1 pyinstaller
+    - pip install --user --upgrade pip==19.1.1
     - python -m pip install --user pyinstaller  # Avoid old binary in PATH
   - os: osx
     language: shell
