@@ -37,17 +37,14 @@ script:
   - echo "Running script on $TRAVIS_OS_NAME platform"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows script start";
-        python -m unittest;
         .\\build.bat;
         echo "End of windows script";
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X script start";
-        python3 -m unittest;
         ./build_osx.sh;
         echo "End of OS X script";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux script start";
-        python3 -m unittest;
         echo "End of linux script";
     fi
 
