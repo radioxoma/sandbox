@@ -27,10 +27,17 @@ jobs:
     install:
     # Travis has python3 preinstalled with Brew to `/usr/local/bin/python3`
     # - brew upgrade python
-    - brew install tree
+    # - brew install tree
+
+    # - unlink /usr/local/bin/python
+    # - ln -s /usr/local/bin/python3 /usr/local/bin/python
+    # - python -m pip install --user --upgrade pip
+    # - python -m pip install --user pyinstaller
+
     - pip3 install pipenv
     - pipenv --three
     - pipenv run pip install pyinstaller
+    - pipenv shell
 
 # These scripts should be able to build project on Travis and locally
 script:
