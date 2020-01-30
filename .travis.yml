@@ -54,6 +54,7 @@ script:
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X script start";
         ./build_osx.sh;
+        pipenv run python -m unittest;
         echo "End of OS X script";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux script start";
