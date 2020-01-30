@@ -28,24 +28,26 @@ jobs:
     # Travis has python3 preinstalled with Brew to `/usr/local/bin/python3`
     # - brew upgrade python
     - brew install tree
-    - python3 -m pip install --user --upgrade pip
-    - python3 -m pip install --user pyinstaller
+    - alias python=/usr/local/bin/python3
+    - python -m pip install --user --upgrade pip
+    - python -m pip install --user pyinstaller
 
 # These scripts should be able to build project on Travis and locally
 script:
-  - python3 -m unittest
+  - python --version
+  - python -m unittest
   - echo "Running script on $TRAVIS_OS_NAME platform"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows script start";
         .\\build.bat;
-        echo "End of windows script";
+        echo "Windows script end";
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X script start";
         ./build_osx.sh;
-        echo "End of OS X script";
+        echo "OS X script end";
     elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         echo "Linux script start";
-        echo "End of linux script";
+        echo "Linux script end";
     fi
 
 deploy:
