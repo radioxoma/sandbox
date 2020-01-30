@@ -25,19 +25,17 @@ jobs:
   - os: osx
     language: shell
     install:
-    # Travis has python3 preinstalled with Brew to `/usr/local/bin/python3`
     # - brew upgrade python
     # - brew install tree
-
+    # Travis has python3 preinstalled with Brew to `/usr/local/bin/python3`
+    # python2 is default python for Mac
     - unlink /usr/local/bin/python
     - ln -s /usr/local/bin/python3 /usr/local/bin/python
     - python -m pip install --user --upgrade pip
     - python -m pip install --user pyinstaller
-
     # - pip3 install pipenv
     # - pipenv --three
-    # - pipenv shell
-    # - pip install pyinstaller
+    # - pipenv run pip install pyinstaller
 
 # These scripts should be able to build project on Travis and locally
 script:
