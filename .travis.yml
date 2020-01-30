@@ -18,53 +18,47 @@ env:
 language: python
 
 jobs:
-  allow_failures:
-    - env: ALLOW_FAILURES=true
   include:
-    - os: linux
-      name: Ubuntu
-      dist: bionic
-    - os: windows
-      name: Windows
-      language: shell
-      env: PATH=$PY34PATH:$PATH
-      install:
-        - choco install python-x86_32 --version=3.4.2
-        - python -m pip install --upgrade pip
-        - pip install pyinstaller
-    - os: osx
-      name: Mac OS X
-      language: shell
-      install:
-        - brew install tree;
-        - pip3 install pipenv;
-        - pipenv --three;
-        - pipenv run pip install pyinstaller;
+ - os: linux
+   name: Ubuntu
+   dist: bionic
+  - os: windows
+    language: shell
+    env: PATH=/c/tools/python-x86_32:/c/tools/python-x86_32/Scripts:$PATH
+    install:
+    - choco install python-x86_32 --version=3.4.3.20150501
+    # pip 19.2 drops support for python 3.4 (despite 19.3.1 been working fine)
+    - python -m pip install --upgrade pip==19.1.1
+    - python -m pip install pyinstaller
+  - os: osx
+    language: shell
+    install:
+# Mac OS X 10.13.6 uses Python 2.7.17 as default interpreter /usr/local/bin/python
+# Travis has python3 preinstalled
+# Brew installs python3 by default to /usr/local/bin/python3
+#    - brew upgrade python
+    - python --version
+    - brew install tree
+    - pip3 install pipenv
+    - pipenv --three
+    - pipenv run pip install pyinstaller
 
 # These scripts should be able to build project on Travis and locally
 script:
+  - python -m unittest
   - echo "Running script on $TRAVIS_OS_NAME platform"
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
         echo "Windows script start";
-        . .\\build.bat;
-        export RELEASE_FILE="dist/sandbox.exe";
+        .\\build.bat;
         echo "End of windows script";
-    elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        echo "Linux script start";
-        python -m sandbox;
-        echo "End of linux script";
     elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         echo "OS X script start";
-        . ./build_osx.sh;
-        export RELEASE_FILE="dist/sandbox.dmg";
+        ./build_osx.sh;
         echo "End of OS X script";
+    elif [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+        echo "Linux script start";
+        echo "End of linux script";
     fi
-
-before_deploy:
-  - echo "Release file name $RELEASE_FILE"
-  - echo "From Windows script $WINDOWS_FILE"
-  - echo "From OS X script $OSX_FILE"
-#   - if [ "$TRAVIS_OS_NAME" == "osx"   ] ; then cp mac-build/dist/file.dmg /Users/travis/file.dmg ; fi
 
 deploy:
   provider: releases
@@ -75,13 +69,11 @@ deploy:
 #  file: "${RELEASE_FILE}"
   skip_cleanup: true
   draft: true
-#  overwrite: true
-  tag_name: "continuous"
-  # name: "Auto dev build by Travis CI"
-  body: "Body text"
+#  prerelease: true
+  overwrite: true
+  name: "Automatical dev build by Travis CI"
+#  body: "Body text"
   on:
-    repo: radioxoma/sandbox
-#     tags: true
+    repo: radioxoma/heval
+    tags: true
     condition: "\"$TRAVIS_OS_NAME\" != \"linux\""
-
-# env(RELEASE_FILE) IS present

@@ -9,4 +9,4 @@ rm -rfv dist/sandbox.app
 echo "dist content:"
 ls dist
 tree
-export OSX_FILE="dist/sandbox.dmg"
+# export OSX_FILE="dist/sandbox.dmg"
