@@ -1,5 +1,5 @@
 echo Mac OS X build script invoked
-pyinstaller --noconsole sandbox/__main__.py --name sandbox
+python -m PyInstaller --noconsole sandbox/__main__.py --name sandbox
 sleep 1
 hdiutil create dist/sandbox.dmg -srcfolder dist/sandbox.app -ov
 echo Remove sandbox directory
