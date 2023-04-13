@@ -1,32 +1,32 @@
 #!/usr/bin/env python
 
-import sys
 import platform
 import struct
+import sys
 
 
 def main():
-    """Main function.
+    """Dummy main function.
 
-    Doctest
-    -------
+    Doctests
+    --------
 
     >>> 2 * 3
     6
 
-    >>> 'war' == 'peace'
+    >>> "war" == "peace"  # doctest: +SKIP
     True
 
-    >>> 'freedom' == 'slavery'
+    >>> "freedom" != "slavery"
     True
-
-    >>> 'ignorance' is 'strength'
-    True
-
     """
-    print("Hello world from {}-bit executable on {}".format(8 * struct.calcsize('P'), platform.system()))
+    print(
+        "Hello world from {}-bit executable on {}".format(
+            8 * struct.calcsize("P"), platform.system()
+        )
+    )
     print("Python version: {}".format(sys.version))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

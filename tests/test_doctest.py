@@ -1,17 +1,26 @@
 #!/usr/bin/env python
 
+import doctest
+import pathlib
 import sys
 import unittest
-import doctest
+
+curdir = pathlib.Path(__file__)
+sys.path.append(str(curdir.parent.parent))
+
 from sandbox import __main__ as main
 
 
-def suite():
-    suite = unittest.TestSuite()
-    suite.addTest(doctest.DocTestSuite(main))
-    return suite
+class TestSandbox(unittest.TestCase):
+    def test_something(self):
+        self.assertTrue(True)
 
 
-runner = unittest.TextTestRunner()
-result = runner.run(suite())
-sys.exit(not result.wasSuccessful())
+def load_tests(loader: unittest.TestLoader, tests, pattern) -> unittest.TestSuite:
+    """Callback to load doctests from modules."""
+    tests.addTests(doctest.DocTestSuite(main))
+    return tests
+
+
+if __name__ == "__main__":
+    unittest.main()
