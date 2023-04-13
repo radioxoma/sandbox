@@ -1,0 +1,23 @@
+[project]
+name = "sandbox"
+dynamic = ["version"]
+description = "Sandbox repo"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    { name = "Eugene Dvoretsky", email = "radioxoma@gmail.com" },
+]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "sandbox.__version__"}
+
+[project.urls]
+homepage = "https://github.com/radioxoma/sandbox"
+
+[project.scripts]
+sandbox = "sandbox.__main__:main"
