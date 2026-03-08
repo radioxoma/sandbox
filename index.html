@@ -1,69 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Auto-Updating BMI</title>
-    <link rel="stylesheet" href="https://pyscript.net">
-    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
-    <style>
-        body { font-family: system-ui; display: flex; justify-content: center; padding-top: 50px; background: #f4f4f9; }
-        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 320px; }
-        input { width: 100%; padding: 10px; margin: 10px 0 20px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
-        .result-box { text-align: center; font-size: 1.2rem; min-height: 3em; color: #333; border-top: 1px solid #eee; pt: 1rem; }
-        .bmi-val { font-weight: bold; color: #2c3e50; display: block; font-size: 2rem; }
-    </style>
-</head>
-<body>
-
-    <div class="card">
-        <h2 style="margin-top:0">BMI Calculator</h2>
-        
-        <label>Weight (kg)</label>
-        <!-- py-input triggers the function on every keystroke -->
-        <input type="number" id="weight" py-input="auto_calculate" placeholder="0">
-        
-        <label>Height (cm)</label>
-        <input type="number" id="height" py-input="auto_calculate" placeholder="0">
-        
-        <div class="result-box">
-            <span id="bmi-display" class="bmi-val">--</span>
-            <span id="status-display">Enter height and weight</span>
-        </div>
-    </div>
-
-    <script type="py">
-        from pyscript import document
-
-        def auto_calculate(event):
-            w_input = document.querySelector("#weight").value
-            h_input = document.querySelector("#height").value
-            
-            bmi_text = document.querySelector("#bmi-display")
-            status_text = document.querySelector("#status-display")
-
-            if not w_input or not h_input:
-                bmi_text.innerText = "--"
-                status_text.innerText = "Waiting for input..."
-                return
-
-            try:
-                weight = float(w_input)
-                height = float(h_input) / 100
-                
-                if height > 0 and weight > 0:
-                    bmi = round(weight / (height ** 2), 1)
-                    bmi_text.innerText = str(bmi)
-                    
-                    if bmi < 18.5: status = "Underweight"
-                    elif 18.5 <= bmi < 25: status = "Healthy weight"
-                    elif 25 <= bmi < 30: status = "Overweight"
-                    else: status = "Obese"
-                    
-                    status_text.innerText = status
-                else:
-                    bmi_text.innerText = "--"
-            except Exception:
-                pass
-    </script>
-</body>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>Heval</title>
+      <link rel="stylesheet" href="https://pyscript.net/releases/2026.3.1/core.css">
+      <style>
+        pre {
+          white-space: pre-wrap;
+        }
+      </style>
+      <script type="module" src="https://pyscript.net/releases/2026.3.1/core.js"></script>
+  </head>
+  <body>
+    <p>
+      <label for="sel_body_sex">Sex</label>
+      <select id="sel_body_sex" name="sel_body_sex">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="child">Child</option>
+      </select>
+      <label for="sbx_body_height">Height, m</label>
+      <input type="number" id="sbx_body_height" step="0.01" min="0" max="3.00" value="1.86">
+      <button id="btn_body_set">Set</button>
+      <button id="btn_body_reset">Reset</button>
+    </p>
+    <p><pre id="output">Please wait</pre></p>
+    <script type="py" src="./main.py" config="./pyscript.json"></script>
+  </body>
 </html>
